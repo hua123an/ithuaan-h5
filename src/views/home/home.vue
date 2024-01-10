@@ -5,15 +5,28 @@ import HomeNoticeBar from "@/views/home/components/homeNoticeBar/homeNoticeBar.v
 import HomeDailyInfo from "@/views/home/components/homeDailyInfo/homeDailyInfo.vue";
 </script>
 <template>
-  <!--  navigation-->
-  <home-navigation/>
-  <!--  swipe-->
-  <home-swipe/>
-  <!--notice bar-->
-  <home-notice-bar/>
-  <van-divider/>
-  <!--  daily info-->
-  <home-daily-info/>
+    <!--  navigation-->
+    <home-navigation/>
+    <!--  swipe-->
+    <home-swipe/>
+    <!--notice bar-->
+    <home-notice-bar/>
+    <van-divider/>
+    <!--  daily info-->
+    <home-daily-info/>
+    <!--  -->
+
+
+
+
+
+
+
+
+
+
+
+
 </template>
 
 <style scoped>

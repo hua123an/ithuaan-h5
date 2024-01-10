@@ -15,7 +15,7 @@ export default defineConfig({
         resolvers : [VantResolver() , VarletUIResolver()]
     }),
       autoImport({
-        resolvers : [VarletUIResolver({autoImport : true}) , VarletUIResolver({autoImport : true})],
+        resolvers : [VarletUIResolver({autoImport : true})],
 
       })
   ],

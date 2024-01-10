@@ -24,20 +24,28 @@ const router = createRouter({
       children : [
         {
           path : '/detail/zhihunews',
-          component : () => import('@/views/detail/homeDetial/dailyInfo/zhiHuNews.vue')
+          component : () => import('@/views/detail/homeDetial/dailyInfo/zhiHuNews/zhiHuNews.vue')
         },
         {
           path : '/detail/todayinhistory',
-          component : () => import('@/views/detail/homeDetial/dailyInfo/todayInHistory.vue')
+          component : () => import('@/views/detail/homeDetial/dailyInfo/todayInHistory/todayInHistory.vue')
         },
         {
           path : '/detail/weibohotsearch',
-          component : () => import('@/views/detail/homeDetial/dailyInfo/hotSearch/weiBoHotSearch.vue')
+          component : () => import('@/views/detail/homeDetial/dailyInfo/hotSearch/weiBoHotSearch/weiBoHotSearch.vue')
         },
         {
           path : '/detail/baiduhotsearch',
-          component : () => import('@/views/detail/homeDetial/dailyInfo/hotSearch/baiduHotSearch.vue')
-        }
+          component : () => import('@/views/detail/homeDetial/dailyInfo/hotSearch/baiDuHotSearch/baiDuHotSearch.vue')
+        },
+        {
+          path: '/detail/toutiaohotsearch',
+          component: () => import('@/views/detail/homeDetial/dailyInfo/hotSearch/touTiaoHotSearch/touTiaoHotSearch.vue')
+        },
+        {
+         path : '/detail/douyinhotsearch',
+          component : () => import('@/views/detail/homeDetial/dailyInfo/hotSearch/douYinHotSearch/douYinHotSearch.vue')
+        },
       ]
     }
   ]
