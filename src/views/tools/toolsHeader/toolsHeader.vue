@@ -1,5 +1,7 @@
 <script setup>
 import {ref} from 'vue'
+import axios from "axios";
+import {getInstance} from "@/apis/tools/toolsApi.js";
 
 const active = ref(0)
 //   tab item data
@@ -7,7 +9,7 @@ const toolsData = {
   "ai": [
     {
       'title': 'app',
-      'id' : 'app',
+      'id': 'app',
       'child': [
         {
           'title': 'chatgpt',
@@ -629,7 +631,7 @@ const toolsData = {
     },
     {
       'title': 'programming',
-      'app' : 'programming',
+      'app': 'programming',
       'child': [
         {
           "title": " \n            autobackend        ",
@@ -768,9 +770,9 @@ const toolsData = {
           "description": " 监控任何网页的变化"
         }
       ]
-    },{
+    }, {
       'title': 'write',
-      'id' : 'write',
+      'id': 'write',
       'child': [
         {
           "title": " \n            FlowUs        ",
@@ -961,9 +963,9 @@ const toolsData = {
       ]
     },
     {
-      'title' : 'design',
-      'id' : 'design',
-      child : [
+      'title': 'design',
+      'id': 'design',
+      child: [
         {
           "title": " \n            Adobe Firefly        ",
           "img": "https://tools.haiyong.site/wp-content/uploads/2023/03/adobe-firefly.jpg",
@@ -1028,9 +1030,9 @@ const toolsData = {
       ]
     },
     {
-      'title' : 'drawing',
-      'id' : 'drawing',
-      'child' : [
+      'title': 'drawing',
+      'id': 'drawing',
+      'child': [
         {
           "title": " \n            PicWish        ",
           "url": "https://picwish.com/",
@@ -1260,9 +1262,9 @@ const toolsData = {
       ]
     },
     {
-      'title' : 'model',
-      'id' : 'model',
-      'child' : [
+      'title': 'model',
+      'id': 'model',
+      'child': [
         {
           "title": " \n            Codex        ",
           "img": "https://tools.haiyong.site/wp-content/uploads/2023/06/qmruasgh98rw6a4u4yop.webp",
@@ -1296,8 +1298,8 @@ const toolsData = {
         }]
     },
     {
-      'title' : 'audio',
-      'id' : 'audio',
+      'title': 'audio',
+      'id': 'audio',
       'child': [
         {
           "title": " \n            Runway        ",
@@ -1388,9 +1390,9 @@ const toolsData = {
       ]
     },
     {
-      'title' : 'working',
-      'id' : 'working',
-      'child' : [
+      'title': 'working',
+      'id': 'working',
+      'child': [
         {
           "title": " \n            Tome AI        ",
           "img": "https://tools.haiyong.site/wp-content/uploads/2023/02/TOME.png",
@@ -1479,109 +1481,31 @@ const toolsData = {
         }
       ]
     }
-
-
   ],
-  "translate": [
-    {
-      'title': '',
-      'img': '',
-      'url': '',
-      'description': ''
-    },
-    {
-      'title': '',
-      'img': '',
-      'url': '',
-      'description': ''
-    }, {
-      'title': '',
-      'img': '',
-      'url': '',
-      'description': ''
-    }, {
-      'title': '',
-      'img': '',
-      'url': '',
-      'description': ''
-    }, {
-      'title': '',
-      'img': '',
-      'url': '',
-      'description': ''
-    }, {
-      'title': '',
-      'img': '',
-      'url': '',
-      'description': ''
-    }, {
-      'title': '',
-      'img': '',
-      'url': '',
-      'description': ''
-    }, {
-      'title': '',
-      'img': '',
-      'url': '',
-      'description': ''
-    }, {
-      'title': '',
-      'img': '',
-      'url': '',
-      'description': ''
-    }, {
-      'title': '',
-      'img': '',
-      'url': '',
-      'description': ''
-    }, {
-      'title': '',
-      'img': '',
-      'url': '',
-      'description': ''
-    },
-
-  ],
-  "document": [
-    {
-      'title': '',
-      'img': '',
-      'url': '',
-      'description': ''
-    }, {
-      'title': '',
-      'img': '',
-      'url': '',
-      'description': ''
-    }, {
-      'title': '',
-      'img': '',
-      'url': '',
-      'description': ''
-    }, {
-      'title': '',
-      'img': '',
-      'url': '',
-      'description': ''
-    }, {
-      'title': '',
-      'img': '',
-      'url': '',
-      'description': ''
-    }, {
-      'title': '',
-      'img': '',
-      'url': '',
-      'description': ''
-    }, {
-      'title': '',
-      'img': '',
-      'url': '',
-      'description': ''
-    },
-
-  ]
 }
+const MSG = ref('')
+const TYPE = ref('')
+const RESULT = ref('此处显示翻译结果')
+const options = [
+  {
+    value: '1',
+    label: '中-英',
+  },
+  {
+    value: '2',
+    label: '英-中'
+  },
+  {
+    value: '3',
+    label: '自动'
+  }
+]
+const translate = async () => {
+  const res = await getInstance({msg: MSG.value, type: TYPE.value})
+  RESULT.value = res.data.text
+}
+
+
 </script>
 <template>
   <var-tabs elevation v-model:active="active" :safe-area="true">
@@ -1592,23 +1516,23 @@ const toolsData = {
   <var-tabs-items v-model:active="active">
     <var-tab-item name="ai">
       <template #default>
-        <ul v-for="ai in toolsData.ai" class="tab" >
-       <li class="nav-tab" >{{ai.title}}</li>
+        <ul v-for="ai in toolsData.ai" class="tab">
+          <li class="nav-tab">{{ ai.title }}</li>
           <br>
           <li v-for="child in ai.child" class="tab-item">
             <el-link :href="child.url" target="_blank">
 
-             <el-card style="width: 140px;height: 200px" shadow="hover">
-               <div style="text-align: center;">
-               <el-image :src="child.img" style="width: 50px" lazy="lazy"></el-image>
-             <div style="padding: 14px">
-               <span style="font-weight: bolder ">{{child.title}}</span>
-               <div class="bottom">
-                 <p>{{child.description}}</p>
-               </div>
-             </div>
-               </div>
-             </el-card>
+              <el-card style="width: 140px;height: 200px" shadow="hover">
+                <div style="text-align: center;">
+                  <el-image :src="child.img" style="width: 50px" lazy="lazy"></el-image>
+                  <div style="padding: 14px">
+                    <span style="font-weight: bolder ">{{ child.title }}</span>
+                    <div class="bottom">
+                      <p>{{ child.description }}</p>
+                    </div>
+                  </div>
+                </div>
+              </el-card>
             </el-link>
           </li>
           <br>
@@ -1616,8 +1540,15 @@ const toolsData = {
       </template>
     </var-tab-item>
     <var-tab-item name="translate">
-
-
+      <div style="text-align: center;">
+      <el-select v-model="TYPE" class="m-2" placeholder="Select"  style="width: 100px">
+        <el-option v-for="i in options" :key="i.value" :label="i.label" :value="i.value"/>
+      </el-select>
+      <el-input v-model="MSG" placeholder="请输入你要翻译的单词或句子" style="width: 200px"></el-input>
+      <el-button @click="translate">翻译</el-button>
+      <br>
+      <textarea name="" id="" cols="52" rows="10" v-model="RESULT"></textarea>
+      </div>
 
     </var-tab-item>
     <var-tab-item name="document">
@@ -1638,6 +1569,7 @@ const toolsData = {
   float: left;
   margin: 20px;
 }
+
 .nav-tab {
   float: left;
   list-style: none;
