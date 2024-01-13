@@ -8,9 +8,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@arco-design/web-vue": "^2.54.1",
     "@varlet/ui": "^2.20.6",
     "@vueuse/core": "^10.7.1",
     "axios": "^1.6.5",
+    "element-plus": "^2.4.4",
     "lib-flexible": "^0.3.2",
     "pinia": "^2.1.7",
     "postcss-px2rem-exclude": "^0.0.6",
