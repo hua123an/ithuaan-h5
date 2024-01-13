@@ -9,13 +9,13 @@
       <var-image class="swipe-example-image" src="public/swipe01.jpg" />
     </var-swipe-item>
     <var-swipe-item>
-      <var-image class="swipe-example-image" src="public/swipe02.png" />
+      <var-image class="swipe-example-image" src="/public/swipe02.png" />
     </var-swipe-item>
     <var-swipe-item>
-      <var-image class="swipe-example-image" src="public/swipe03.png" />
+      <var-image class="swipe-example-image" src="/public/swipe03.png" />
     </var-swipe-item >
     <var-swipe-item>
-      <var-image class="swipe-example-image" src="public/swipe04.jpg" />
+      <var-image class="swipe-example-image" src="/public/swipe04.jpg" />
     </var-swipe-item>
   </var-swipe>
 </div>
