@@ -4,7 +4,7 @@ import {ref , onMounted} from "vue";
 import axios from "axios";
 const hot = ref("")
 const getData = async () => {
-  const res = await axios.get("https://tenapi.cn/v2/weibohot")
+  const res = await axios.get("https://api.vvhan.com/api/hotlist?type=wbHot")
   hot.value = res.data.data
 }
 const router = useRouter()
@@ -20,10 +20,10 @@ onMounted(() => getData())
     </template>
   </var-app-bar>
   <var-divider dashed />
-  <var-list v-for="i in hot">
+  <var-list v-for="i in hot" :id="i.index">
     <var-cell>
       <var-link :href="i.url" target="_blank" type="primary" underline="false">
-        {{i.name}} 热度:{{i.hot}}
+        {{i.title}} 热度:{{i.hot}}
       </var-link>
     </var-cell>
   </var-list>

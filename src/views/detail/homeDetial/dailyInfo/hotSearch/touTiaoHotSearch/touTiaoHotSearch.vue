@@ -5,7 +5,13 @@ import {useRouter} from "vue-router";
 const router = useRouter()
 const hot = ref('')
 const getHot = async () => {
-  const res = await axios.get("https://tenapi.cn/v2/toutiaohot")
+  const res = await axios.get("https://v2.alapi.cn/api/new/wbtop?num=100&token=LwExDtUWhF3rH5ib",{
+    headers : {
+      'Accept' : 'application/json, text/plain, */*',
+      'Content-Type' : 'text/html; charset=UTF-8'
+    }
+
+  })
   hot.value = res.data.data
 }
 onMounted(() => getHot())
@@ -24,7 +30,8 @@ onMounted(() => getHot())
   <var-list v-for="i in hot">
     <var-cell>
       <var-link :href="i.url" target="_blank" type="primary" underline="false">
-        {{i.name}}
+        {{i.hot_word}}
+        <span>{{i.hot_word}}</span>
       </var-link>
     </var-cell>
   </var-list>

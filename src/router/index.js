@@ -46,6 +46,10 @@ const router = createRouter({
          path : '/detail/douyinhotsearch',
           component : () => import('@/views/detail/homeDetial/dailyInfo/hotSearch/douYinHotSearch/douYinHotSearch.vue')
         },
+        {
+          path : '/detail/worldnews',
+          component : () => import('@/views/detail/homeDetial/dailyInfo/worldNews/worldNews.vue')
+        }
       ]
     },
     {

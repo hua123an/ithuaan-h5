@@ -2,6 +2,7 @@
 import ZhiHuNews from "@/views/home/components/homeDailyInfo/zhiHuNews/zhiHuNews.vue";
 import TodayInHistory from "@/views/home/components/homeDailyInfo/todayInHistory/todayInHistory.vue";
 import HotSearch from "@/views/home/components/homeDailyInfo/hotSearch/hotSearch.vue";
+import WorldNews from '@/views/home/components/homeDailyInfo/worldNews/worldNews.vue'
 </script>
 
 <template>
@@ -10,6 +11,7 @@ import HotSearch from "@/views/home/components/homeDailyInfo/hotSearch/hotSearch
   <zhi-hu-news />
   <today-in-history />
   <hot-search/>
+  <world-news />
 </div>
 </template>
 

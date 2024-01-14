@@ -1,7 +1,12 @@
 <script setup>
-import {ref} from 'vue'
+import {ref , onMounted} from 'vue'
 import {getInstance} from "@/apis/tools/toolsApi.js";
-
+import { GoogleGenerativeAI } from "@google/generative-ai";
+import {getEpic} from "@/apis/home/homeApis.js";
+const EPIC_GAME_API = 'HkqINiVUVwODNPPGYVtolkgwnt'
+const API_KEY = 'AIzaSyBfb3woDD2gLmRB7StP-245MWdgvKzJSzs'
+// Access your API key (see "Set up your API key" above)
+const genAI = new GoogleGenerativeAI(API_KEY);
 const active = ref(0)
 //   tab item data
 const toolsData = {
@@ -1485,6 +1490,10 @@ const toolsData = {
 const MSG = ref('')
 const TYPE = ref('')
 const RESULT = ref('此处显示翻译结果')
+// google gemini prompt
+const input = ref('')
+// google gemini output
+const output = ref('')
 const options = [
   {
     value: '1',
@@ -1499,41 +1508,28 @@ const options = [
     label: '自动'
   }
 ]
+// epic game
+const game = ref('')
 const translate = async () => {
   const res = await getInstance({msg: MSG.value, type: TYPE.value})
   RESULT.value = res.data.text
 }
-const docs = {
-  "vue" : [
-    {
-      'type' : 'vue',
-      'child' : [
-        {
-          'title' : '',
-          'url' : ''
-        }
-      ]
-    }
-  ],
-  "react" : [
-    {
-      'type' : 'react',
-      "child" : [
-        {
-          'title' : 'child'
-        }
-      ]
-    }
-
-  ]
+const getGemini = async () => {
+  const model = genAI.getGenerativeModel({model : 'gemini-pro'})
+  const prompt = input.value
+  const result = await model.generateContent(prompt)
+  const res = await result.response
+  output.value = res.text()
 }
-
 </script>
 <template>
   <var-tabs elevation v-model:active="active" :safe-area="true">
     <var-tab name="ai">ai</var-tab>
     <var-tab name="translate">翻译</var-tab>
+    <var-tab name="chat">chat</var-tab>
+    <var-tab name="game">game</var-tab>
   </var-tabs>
+  <var-divider />
   <var-tabs-items v-model:active="active">
     <var-tab-item name="ai">
       <template #default>
@@ -1571,6 +1567,19 @@ const docs = {
       <textarea  cols="52" rows="10" v-model="RESULT" disabled></textarea>
       </div>
     </var-tab-item>
+    <var-tab-item name="chat">
+      <div style="text-align: center;">
+        <el-input v-model="input" placeholder="请输入你要询问的话语" style="width: 200px"></el-input>
+        <el-button @click="getGemini">确定</el-button>
+        <br>
+        <textarea  cols="100" rows="60" v-model="output" disabled placeholder="我是来自谷歌的大模型语言gemini"></textarea>
+      </div>
+    </var-tab-item>
+    <var-tab-item name="game">
+
+
+    </var-tab-item>
+
   </var-tabs-items>
 </template>
 
