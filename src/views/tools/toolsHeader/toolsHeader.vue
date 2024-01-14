@@ -1504,14 +1504,36 @@ const translate = async () => {
   const res = await getInstance({msg: MSG.value, type: TYPE.value})
   RESULT.value = res.data.text
 }
+const docs = {
+  "vue" : [
+    {
+      'type' : 'vue',
+      'child' : [
+        {
+          'title' : '',
+          'url' : ''
+        }
+      ]
+    }
+  ],
+  "react" : [
+    {
+      'type' : 'react',
+      "child" : [
+        {
+          'title' : 'child'
+        }
+      ]
+    }
 
+  ]
+}
 
 </script>
 <template>
   <var-tabs elevation v-model:active="active" :safe-area="true">
     <var-tab name="ai">ai</var-tab>
     <var-tab name="translate">翻译</var-tab>
-    <var-tab name="document">文档</var-tab>
   </var-tabs>
   <var-tabs-items v-model:active="active">
     <var-tab-item name="ai">
@@ -1522,13 +1544,13 @@ const translate = async () => {
           <li v-for="child in ai.child" class="tab-item">
             <el-link :href="child.url" target="_blank">
 
-              <el-card style="width: 140px;height: 200px" shadow="hover">
+              <el-card style="height: 140px;width: 140px" shadow="hover">
                 <div style="text-align: center;">
                   <el-image :src="child.img" style="width: 50px" lazy="lazy"></el-image>
                   <div style="padding: 14px">
                     <span style="font-weight: bolder ">{{ child.title }}</span>
                     <div class="bottom">
-                      <p>{{ child.description }}</p>
+                      <el-text line-clamp="3">{{child.description}}</el-text>
                     </div>
                   </div>
                 </div>
@@ -1547,13 +1569,8 @@ const translate = async () => {
       <el-input v-model="MSG" placeholder="请输入你要翻译的单词或句子" style="width: 200px"></el-input>
       <el-button @click="translate">翻译</el-button>
       <br>
-      <textarea name="" id="" cols="52" rows="10" v-model="RESULT"></textarea>
+      <textarea  cols="52" rows="10" v-model="RESULT" disabled></textarea>
       </div>
-
-    </var-tab-item>
-    <var-tab-item name="document">
-
-
     </var-tab-item>
   </var-tabs-items>
 </template>
@@ -1567,7 +1584,7 @@ const translate = async () => {
 .tab .tab-item {
   display: flex;
   float: left;
-  margin: 20px;
+  margin-top: 10px;
 }
 
 .nav-tab {

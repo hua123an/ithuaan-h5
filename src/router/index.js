@@ -47,6 +47,9 @@ const router = createRouter({
           component : () => import('@/views/detail/homeDetial/dailyInfo/hotSearch/douYinHotSearch/douYinHotSearch.vue')
         },
       ]
+    },
+    {
+
     }
   ]
 })
