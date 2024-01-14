@@ -36,7 +36,7 @@
 /*display on mobile*/
 @media screen and (max-width: 768px) {
   .swipe-example {
-    height: 200px;
+    height: 240px;
   }
   .swipe-example-image {
     object-fit: cover;
