@@ -1,6 +1,5 @@
 <script setup>
 import {ref} from 'vue'
-import axios from "axios";
 import {getInstance} from "@/apis/tools/toolsApi.js";
 
 const active = ref(0)
